@@ -13,6 +13,8 @@
         android:layout_width="344dp"
         android:layout_height="48dp"
         android:text="LOGIN"
+        android:background="@drawable/rectangle_radius_5dp"
+        android:backgroundTint="@color/sopt_main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
@@ -86,7 +88,7 @@
             android:id="@+id/login_pw_input"
             android:layout_width="360dp"
             android:layout_height="48dp"
-            android:ems="10"
+
             android:hint="비밀번호를 입력해주세요"
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
