@@ -19,7 +19,12 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initButtonClickEvent()
-        initRepoAdapter()
+
+
+        val repositoryListFragment = RepositoryListFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.home_repo_list, repositoryListFragment)
+        transaction.commit()
 
     }
 
@@ -31,42 +36,42 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun initRepoAdapter(){
-        val repositoryListAdapter = RepositoryListAdapter()
-        binding.repositoryRecyclerList.adapter = repositoryListAdapter
-        repositoryListAdapter.repositoryList.addAll(
-            listOf<RepositoryInfo>(
-                    RepositoryInfo(
-                            "첫 번째 레파지토리",
-                            "설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다",
-                            "java"
-                    ),
-                    RepositoryInfo(
-                             "두 번째 레파지토리 두번째 레파지토리 두번째 레파지토리 두번째 레파지토리",
-                            "정보",
-                            "kt"
-                    ),
-                    RepositoryInfo(
-                            "세 번째 레파지토리",
-                            "설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다",
-                            "java"
-                    ),
-                    RepositoryInfo(
-                            "네 번째 레파지토리",
-                            "설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다",
-                            "java"
-                    ),
-                    RepositoryInfo(
-                            "마지막 레파지토리",
-                            "설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다",
-                            "java"
-                    )
-
-
-
-            )
-        )
-    }
+//    private fun initRepoAdapter(){
+//        val repositoryListAdapter = RepositoryListAdapter()
+//        binding.repositoryRecyclerList.adapter = repositoryListAdapter
+//        repositoryListAdapter.repositoryList.addAll(
+//            listOf<RepositoryInfo>(
+//                    RepositoryInfo(
+//                            "첫 번째 레파지토리",
+//                            "설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다",
+//                            "java"
+//                    ),
+//                    RepositoryInfo(
+//                             "두 번째 레파지토리 두번째 레파지토리 두번째 레파지토리 두번째 레파지토리",
+//                            "정보",
+//                            "kt"
+//                    ),
+//                    RepositoryInfo(
+//                            "세 번째 레파지토리",
+//                            "설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다",
+//                            "java"
+//                    ),
+//                    RepositoryInfo(
+//                            "네 번째 레파지토리",
+//                            "설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다",
+//                            "java"
+//                    ),
+//                    RepositoryInfo(
+//                            "마지막 레파지토리",
+//                            "설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다설명이 길어지면 말 줄임표를 사용합니다",
+//                            "java"
+//                    )
+//
+//
+//
+//            )
+//        )
+//    }
 
 
 

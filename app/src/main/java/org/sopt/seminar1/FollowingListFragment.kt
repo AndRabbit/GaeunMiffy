@@ -17,7 +17,7 @@ class FollowingListFragment:Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentFollowingListBinding.inflate(inflater,container, false)
+        _binding = FragmentFollowingListBinding.inflate(inflater,container, false)
         return binding.root
     }
 
