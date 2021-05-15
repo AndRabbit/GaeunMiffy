@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import org.sopt.seminar1.data.FollowingUserInfo
 import org.sopt.seminar1.databinding.FragmentFollowingListBinding
 
 class FollowingListFragment:Fragment() {

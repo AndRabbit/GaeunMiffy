@@ -3,6 +3,7 @@ package org.sopt.seminar1
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import org.sopt.seminar1.data.FollowingUserInfo
 import org.sopt.seminar1.databinding.ItemFollowUserBinding
 
 class FollowingListAdapter : RecyclerView.Adapter<FollowingListAdapter.FollowingUserViewHOlder>() {
