@@ -12,6 +12,7 @@
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/53547556/118372357-33267600-b5ec-11eb-83a1-2ec6590ce108.gif)
 
 <br>
+
 ## 과제를 통해 느낀 점, 배운 점
 
 
