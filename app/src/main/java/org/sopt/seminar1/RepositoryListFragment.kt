@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import org.sopt.seminar1.databinding.FragmentRepositoryListBinding
 import androidx.fragment.app.Fragment
+import org.sopt.seminar1.data.RepositoryInfo
 
 
 class RepositoryListFragment:Fragment() {

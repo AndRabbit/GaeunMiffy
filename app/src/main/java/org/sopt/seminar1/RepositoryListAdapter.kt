@@ -3,6 +3,7 @@ package org.sopt.seminar1
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import org.sopt.seminar1.data.RepositoryInfo
 import org.sopt.seminar1.databinding.ItemRepositoryBinding
 
 class RepositoryListAdapter: RecyclerView.Adapter<RepositoryListAdapter.RepositoryListViewHolder>() {
