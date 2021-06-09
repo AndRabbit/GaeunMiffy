@@ -1,22 +1,113 @@
-**1. 화면전환 후 데이터를 가져온 로직 정리**
+## Lv1-1 Activity 처리
 
+---
 
-![image](https://user-images.githubusercontent.com/53547556/114310013-295caf00-9b24-11eb-8162-dd6e8754cb13.png)
+searchUserAuthStorage() 메소드를 제작하여
 
-SignUpActivity에서 SignInActivity로 id, pw 값을 넘겨준다.
+SharedPreference에 등록된 아이디와 비밀번호가 있다면, 바로 홈화면으로 이동하도록 하는
 
+자동로그인을 구현하였다. 
 
+```kotlin
+call.enqueue(object : Callback<ResponseLoginData> {
+                override fun onResponse(
+                        call : Call<ResponseLoginData>,
+                        response: Response<ResponseLoginData>
+                ) {
+                    if (response.isSuccessful) {
+                        val data = response.body()?.data
+                        //통신 성공 시 유저 닉네임을 보여준다.
+                        showToast(data?.user_nickname.toString())
 
+                        if(!SoptUserAuthStorage.hasUserData(this@SignInActivity)) {
+                            SoptUserAuthStorage.saveUserId(this@SignInActivity, requestLoginData.id)
+                            SoptUserAuthStorage.saveUserPw(this@SignInActivity, requestLoginData.password)
+                        }
 
-**2. 생명주기를 호출하고 다른 엑티비티를 호출하면 어떻게 되는지 로그를 캡쳐**
+                        startHomeActivity()
 
-![image](https://user-images.githubusercontent.com/53547556/114312402-86a92e00-9b2d-11eb-98fe-a942ec344e95.png)
+                    } else {
+                        showToast("아이디와 비밀번호를 확인해 주세요")
+                    }
+                }
 
+                override fun onFailure(call: Call<ResponseLoginData>, t: Throwable) {
+                    Log.d("NetworkTest","error:$t")
+                }
+            })
+```
 
+사용자가 로그인에 성공하면 입력한 아이디와 비밀번호를 sharedPreference에 집어 넣는다.
 
+## Lv1-2 SharedPreference 코드 첨부
 
-**3. 이번 과제를 통해 배운 내용을 적어주세요!**
+---
 
-화면 전환 과정에서 많은 어려움이 있었지만 결국 극복했다. 안드로이드 포기하지 말고 끝까지 열심히 해봅시당
-앞으로 세미나 실습과정을 하나 하나 되짚어 가면서 공부를 꼼꼼히 해야 겠다. 그리고 과제는 미리미리 !
+```kotlin
+object SoptUserAuthStorage {
+    private const val STORAGE_KEY = "user_auth"
+    private const val USER_ID_KEY = "user_id"
+    private const val USER_PW_KEY = "user_pw"
 
+    fun getUserId(context: Context): String {
+        val sharedPreferences = context.getSharedPreferences(
+                "${context.packageName}.$STORAGE_KEY",
+                Context.MODE_PRIVATE
+        )
+        return sharedPreferences.getString(USER_ID_KEY, "") ?: ""
+    }
+
+    fun getUserPw(context: Context): String {
+        val sharedPreferences = context.getSharedPreferences(
+                "${context.packageName}.$STORAGE_KEY",
+                Context.MODE_PRIVATE
+        )
+        return sharedPreferences.getString(USER_PW_KEY, "") ?: ""
+    }
+
+    fun saveUserId(context: Context, id: String) {
+        val sharedPreferences = context.getSharedPreferences(
+                "${context.packageName}.$STORAGE_KEY",
+                Context.MODE_PRIVATE
+        )
+        sharedPreferences.edit()
+                .putString(USER_ID_KEY, id)
+                .apply()
+    }
+
+    fun saveUserPw(context: Context, pw: String) {
+        val sharedPreferences = context.getSharedPreferences(
+                "${context.packageName}.$STORAGE_KEY",
+                Context.MODE_PRIVATE
+        )
+        sharedPreferences.edit()
+                .putString(USER_PW_KEY, pw)
+                .apply()
+    }
+
+    fun clearAuthLogin(context: Context) {
+        val sharedPreferences = context.getSharedPreferences(
+                "${context.packageName}.$STORAGE_KEY",
+                Context.MODE_PRIVATE
+        )
+        sharedPreferences.edit()
+                .clear()
+                .apply()
+    }
+
+    fun hasUserData(context: Context) : Boolean {
+        val sharedPreferences = context.getSharedPreferences(
+                "${context.packageName}.$STORAGE_KEY",
+                Context.MODE_PRIVATE
+        )
+        return !sharedPreferences.getString(USER_ID_KEY, "").isNullOrBlank() &&
+                !sharedPreferences.getString(USER_PW_KEY, "").isNullOrBlank()
+    }
+}
+```
+
+### 과제를 통해 배운 내용!
+
+---
+
+sharedPreference를 통한 자동로그인을 구현하였다! 확장함수를 통해서 긴 코드를 줄이는 방법을 배우고, 메소드를 생성하여 코드를 정리하는 것과 확장함수를 사용해서 정리하는 방법의 차이와 용도를 (어느정도) 알게 되었다. 과제를 할 수록 클린 코드와 효율적인 코드 작성에 대해서 더 공부하고 싶어진다 !!
